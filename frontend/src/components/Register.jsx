@@ -67,7 +67,7 @@ export default function Register() {
         throw new Error(data.message || 'Registration failed');
       }
 
-      setSuccess('Account created successfully! Redirecting to login...');
+      setSuccess('Account created successfully. Redirecting to login...');
       setTimeout(() => {
         navigate('/login');
       }, 2000);
