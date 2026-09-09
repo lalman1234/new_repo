@@ -1,28 +1,20 @@
 const fs = require('fs');
 const path = require('path');
 
-function replaceInDir(dir) {
+function fixInDir(dir) {
   const files = fs.readdirSync(dir);
   for (const file of files) {
     const fullPath = path.join(dir, file);
     if (fs.statSync(fullPath).isDirectory()) {
-      replaceInDir(fullPath);
+      fixInDir(fullPath);
     } else if (fullPath.endsWith('.jsx')) {
       let content = fs.readFileSync(fullPath, 'utf8');
-      let updated = false;
-      
-      if (content.includes('http://localhost:5000')) {
-        content = content.replace(/'http:\/\/localhost:5000(\/.*?)'/g, "`\\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}$1`");
-        content = content.replace(/`http:\/\/localhost:5000(\/.*?)`/g, "`\\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}$1`");
-        updated = true;
-      }
-      
-      if (updated) {
+      if (content.includes('\\${')) {
+        content = content.replace(/\\\${/g, '${');
         fs.writeFileSync(fullPath, content, 'utf8');
-        console.log('Updated', fullPath);
+        console.log('Fixed', fullPath);
       }
     }
   }
 }
-
-replaceInDir('c:/Users/lalma/OneDrive/Desktop/Institute-Training/frontend/src/components');
+fixInDir('c:/Users/lalma/OneDrive/Desktop/Institute-Training/frontend/src/components');

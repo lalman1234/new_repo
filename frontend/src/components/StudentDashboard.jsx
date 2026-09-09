@@ -17,7 +17,7 @@ export default function StudentDashboard() {
     const fetchStudentData = async () => {
       const headers = { 'Authorization': `Bearer ${token}` };
       try {
-        const pRes = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/auth/me`, { headers });
+        const pRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/auth/me`, { headers });
         if (pRes.ok) {
           const profileData = await pRes.json();
           if (profileData.role !== 'student') {
@@ -30,7 +30,7 @@ export default function StudentDashboard() {
           return;
         }
 
-        const cRes = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses`, { headers });
+        const cRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses`, { headers });
         if (cRes.ok) {
           setCourses(await cRes.json());
         }

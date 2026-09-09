@@ -21,7 +21,7 @@ export default function TrainerDashboard() {
 
   const fetchCourses = async () => {
     try {
-      const res = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (res.ok) {
@@ -44,7 +44,7 @@ export default function TrainerDashboard() {
     setSuccess('');
 
     try {
-      const res = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -68,7 +68,7 @@ export default function TrainerDashboard() {
     if (!window.confirm('Are you sure you want to delete this course?')) return;
 
     try {
-      const res = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });

@@ -40,13 +40,13 @@ export default function AdminDashboard() {
   const fetchData = async () => {
     const headers = { 'Authorization': `Bearer ${token}` };
     try {
-      const cRes = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses`, { headers });
+      const cRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses`, { headers });
       if (cRes.ok) setCourses(await cRes.json());
 
-      const tRes = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/trainers`, { headers });
+      const tRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/trainers`, { headers });
       if (tRes.ok) setTrainers(await tRes.json());
 
-      const sRes = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/students`, { headers });
+      const sRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/students`, { headers });
       if (sRes.ok) setStudents(await sRes.json());
     } catch (e) {
       console.error(e);
@@ -65,7 +65,7 @@ export default function AdminDashboard() {
     setCourseOk('');
 
     try {
-      const res = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export default function AdminDashboard() {
     if (!window.confirm('Are you sure you want to delete this course?')) return;
     
     try {
-      const res = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/courses/${id}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -107,7 +107,7 @@ export default function AdminDashboard() {
     setTrainerOk('');
 
     try {
-      const res = await fetch(`\${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/trainers`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/admin/trainers`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
